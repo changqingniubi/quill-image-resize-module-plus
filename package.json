@@ -66,7 +66,7 @@
   "name": "quill-image-resize-module-plus",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kensnyder/quill-image-resize-module.git"
+    "url": "git+https://github.com/changqingniubi/quill-image-resize-module-plus"
   },
   "scripts": {
     "build": "webpack --progress --colors",
@@ -77,5 +77,5 @@
     "release": "webpack -p --progress --colors",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "version": "3.0.1"
+  "version": "1.0.0"
 }
