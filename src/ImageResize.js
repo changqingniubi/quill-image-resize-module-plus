@@ -23,7 +23,7 @@ export default class ImageResize {
 		if (options.modules) {
 			moduleClasses = options.modules.slice();
 		}
-
+		options.delete=this.handleDelete;
 		// Apply options to default options
 		this.options = defaultsDeep({}, options, DefaultOptions);
 
@@ -37,7 +37,6 @@ export default class ImageResize {
 
 		// respond to clicks inside the editor
 		this.quill.root.addEventListener('click', this.handleClick, false);
-
 		this.quill.root.parentNode.style.position = this.quill.root.parentNode.style.position || 'relative';
 
 		// setup modules
@@ -80,7 +79,11 @@ export default class ImageResize {
 
 		this.modules = [];
 	};
-
+	handleDelete=()=>{
+		if (this.img) {
+			this.hide();
+		}
+	};
 	handleClick = (evt) => {
 		if (evt.target && evt.target.tagName && evt.target.tagName.toUpperCase() === 'IMG') {
 			if (this.img === evt.target) {
