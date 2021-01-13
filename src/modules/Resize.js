@@ -4,7 +4,8 @@ export class Resize extends BaseModule {
 	onCreate = () => {
 		// track resize handles
 		this.boxes = [];
-
+		this.imageMaxWidth =this.options.imageMaxStyles.width;
+		this.imageMinWidth =this.options.imageMinStyles.width;
 		// add 4 resize handles
 		this.addBox('nwse-resize'); // top left
 		this.addBox('nesw-resize'); // top right
@@ -49,7 +50,6 @@ export class Resize extends BaseModule {
 		// listen for mousedown on each box
 		box.addEventListener('touchstart', this.handleMousedown, false);
 		box.addEventListener('mousedown', this.handleMousedown, false);
-		box.addEventListener('touchstart', this.handleMousedown, false);
 		// add drag handle to document
 		this.overlay.appendChild(box);
 		// keep track of drag handle
@@ -114,10 +114,29 @@ export class Resize extends BaseModule {
 
 		if (this.dragBox === this.boxes[0] || this.dragBox === this.boxes[3]) {
 			// left-side resize handler; dragging right shrinks image
-			this.img.width = Math.round(this.preDragWidth - deltaX);
+			let width = Math.round(this.preDragWidth - deltaX);
+			if(this.preDragWidth>this.imageMinWidth){
+				if(width>=this.imageMinWidth&&width<=this.imageMaxWidth){
+					this.img.width = width;
+				}
+			}else{
+				if(width>=this.preDragWidth&&width<=this.imageMaxWidth){
+					this.img.width = width;
+				}
+			}
+			
 		} else {
 			// right-side resize handler; dragging right enlarges image
-			this.img.width = Math.round(this.preDragWidth + deltaX);
+			let width = Math.round(this.preDragWidth + deltaX);
+			if(this.preDragWidth>this.imageMinWidth){
+				if(width>=this.imageMinWidth&&width<=this.imageMaxWidth){
+					this.img.width = width;
+				}
+			}else{
+				if(width>=this.preDragWidth&&width<=this.imageMaxWidth){
+					this.img.width = width;
+				}
+			}
 		}
 		this.requestUpdate();
 	};

@@ -9,6 +9,14 @@ export default {
         boxSizing: 'border-box',
         border: '1px dashed #444',
     },
+    imageMaxStyles: {
+        width:9999,
+        height:9999
+    },
+    imageMinStyles: {
+        width: 0,
+        height: 0
+    },
     handleStyles: {
         position: 'absolute',
         height: '12px',
